@@ -8,6 +8,12 @@ const createLead = async (req, res) => {
       return res.status(400).json({ message: "Name and email are required" });
     }
 
+    const existingLead = await Lead.findOne({ email });
+
+    if (existingLead) {
+      return res.status(400).json({ message: "Lead already exists" });
+    }
+
     const lead = await Lead.create({
       name,
       email,
