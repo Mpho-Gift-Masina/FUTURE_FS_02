@@ -73,7 +73,12 @@ const loginAdmin = async (req, res) => {
   }
 };
 
+const getMe = async (req, res) => {
+  res.status(200).json({ admin: req.admin });
+};
+
 module.exports = {
   registerAdmin,
   loginAdmin,
+  getMe,
 };
