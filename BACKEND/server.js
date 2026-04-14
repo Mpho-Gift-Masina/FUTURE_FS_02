@@ -16,7 +16,7 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/leads", require("./routes/leadRoutes"));
 
 app.get("/", (req, res) => {
-  res.send("Mini CRM backend is running");
+  res.send("TechSol backend is running");
 });
 
 const PORT = process.env.PORT || 5000;
