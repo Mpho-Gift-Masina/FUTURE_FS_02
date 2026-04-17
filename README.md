@@ -28,7 +28,7 @@
 - [Running the App](#-running-the-app)
 - [API Endpoints](#-api-endpoints)
 - [Project Structure](#-project-structure)
-- [Frontend Notes](#-frontend-notes)
+- [Contact Form Email Handler](#-contact-form-email-handler)
 - [Deployment](#-deployment)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -58,13 +58,14 @@ The system allows anyone to submit a lead through a public interface, while auth
 |---|---|
 | 🎨 **Frontend UI** | React + Vite client for interacting with the system |
 | 🔐 **Admin Authentication** | Secure JWT-based register & login for admin users |
-| 📋 **Lead Capture** | Public endpoint to receive new leads (name, email, phone, source, message) |
-| 🔍 **Lead Listing** | Retrieve all leads; filter by `status` via query parameter |
+| 📋 **Lead Capture** | Public endpoint to receive new leads |
+| 🔍 **Lead Listing** | Retrieve all leads and filter by status |
 | 👁 **Lead Detail** | Fetch full details of a single lead by ID |
-| 🔄 **Status Pipeline** | Move leads through `new → contacted → converted` stages |
-| 📝 **Notes** | Append time-stamped notes to any lead for internal tracking |
-| 🗑 **Delete Lead** | Permanently remove a lead from the system |
-| 🔒 **Route Protection** | All admin-only operations are guarded by JWT middleware |
+| 🔄 **Status Pipeline** | Move leads through `new → contacted → converted` |
+| 📝 **Notes** | Append time-stamped notes to any lead |
+| 🗑 **Delete Lead** | Permanently remove a lead |
+| 📬 **Contact Form Email Handler** | Send messages from the landing page to the project owner |
+| 🔒 **Route Protection** | Admin-only operations are protected by JWT middleware |
 
 ---
 
@@ -74,38 +75,37 @@ The system allows anyone to submit a lead through a public interface, while auth
 |---|---|
 | **Frontend** | React, Vite, JavaScript |
 | **Runtime** | Node.js 18+ |
-| **Framework** | Express.js 5 |
+| **Framework** | Express.js |
 | **Database** | MongoDB Atlas / Local MongoDB |
-| **ODM** | Mongoose 9 |
+| **ODM** | Mongoose |
 | **Authentication** | JSON Web Tokens (`jsonwebtoken`) + `bcryptjs` |
 | **Configuration** | `dotenv` |
+| **Email** | Nodemailer + Gmail SMTP |
 | **Dev Server** | `nodemon` |
 
 ---
 
 ## 📸 Screenshots
 
-> _Screenshots or GIF recordings of the frontend and backend in action can be added here._
+> Screenshots or demo GIFs can be added here.
 
 ---
 
 ## ✅ Prerequisites
 
-Ensure the following are installed on your machine before getting started:
+Make sure you have:
 
-- [Node.js](https://nodejs.org/) **v18 or higher**
-- [npm](https://www.npmjs.com/) (bundled with Node.js)
-- A running **MongoDB** instance — either:
-  - **[MongoDB Atlas](https://www.mongodb.com/cloud/atlas)**, or
-  - **[MongoDB Community Server](https://www.mongodb.com/try/download/community)**
+- **Node.js** v18 or higher
+- **npm**
+- **MongoDB Atlas** account or local MongoDB installation
+- A **Gmail account** with a **Google App Password** for the contact form email feature
 
 ---
 
 ## 🚀 Installation & Setup
 
-```bash
-# 1. Clone the repository
-git clone https://github.com/Mpho-Gift-Masina/FUTURE_FS_02.git
+### 1. Clone the repository
 
-# 2. Navigate into the project
+```bash
+git clone https://github.com/Mpho-Gift-Masina/FUTURE_FS_02.git
 cd FUTURE_FS_02
