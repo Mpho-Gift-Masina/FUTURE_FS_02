@@ -46,3 +46,40 @@ JWT_SECRET=your_secret_key
 
 Full API documentation is in the [root README](../README.md#-api-endpoints).
 
+## Contact Form Email Handler
+
+The CRM landing page includes a contact form that sends messages to the project owner through the backend.
+
+### How it works
+- The React frontend sends contact form data to the backend API
+- The Express backend handles the request
+- Nodemailer sends the email using Gmail SMTP
+
+### Environment variables
+Create a `.env` file inside `BACKEND/` and add:
+
+```env
+EMAIL_USER=yourgmail@gmail.com
+EMAIL_PASS=your_16_character_google_app_password
+CONTACT_RECEIVER=yourgmail@gmail.com
+
+```md
+## Email Contact Endpoint
+
+### Endpoint
+`POST /api/contact`
+
+### Request body
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "message": "Hello, I want to know more about your CRM."
+}
+##  Stage your changes
+
+From the root of the repo:
+
+```bash
+git add .
+
