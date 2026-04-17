@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import { sendContactMessage } from "../lib/api";
 
 const ICON_COLORS = ["#818cf8", "#22d3ee", "#f59e0b", "#34d399"];
 
@@ -72,11 +73,22 @@ export default function LandingPage({ onGoToLogin, onGoToSignup, hasSession, onG
 
   const handleContactSubmit = async (e) => {
     e.preventDefault();
-    setContactStatus("sending");
-    // Simulate a brief send delay — replace with a real API call if needed
-    await new Promise((r) => setTimeout(r, 800));
-    setContactStatus("sent");
-    setContactForm({ name: "", email: "", message: "" });
+
+    try {
+      setContactStatus("sending");
+
+      await sendContactMessage(contactForm);
+
+      setContactStatus("sent");
+      setContactForm({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Contact form error:", error);
+      setContactStatus("error");
+    }
   };
 
   return (

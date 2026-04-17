@@ -182,3 +182,22 @@ export const deleteLead = async (leadId) => {
 
   return data;
 };
+
+/* email handler */
+export const sendContactMessage = async (contactForm) => {
+  const response = await fetch(`${API_BASE_URL}/contact`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(contactForm),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to send message");
+  }
+
+  return data;
+};
