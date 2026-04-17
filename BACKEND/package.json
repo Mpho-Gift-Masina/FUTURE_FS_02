@@ -4,7 +4,7 @@
   "description": "\\# Mini CRM Backend",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "npm start",
     "dev": "nodemon server.js"
   },
   "keywords": [],
