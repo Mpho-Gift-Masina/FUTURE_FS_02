@@ -1,7 +1,9 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
 const sendContactEmail = async (req, res) => {
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     const { name, email, message } = req.body;
 
     if (!name || !email || !message) {
@@ -10,17 +12,10 @@ const sendContactEmail = async (req, res) => {
       });
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
+    await resend.emails.send({
+      from: process.env.CONTACT_SENDER,
       to: process.env.CONTACT_RECEIVER,
+      reply_to: email,
       subject: `New Contact Form Message from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
@@ -29,9 +24,7 @@ const sendContactEmail = async (req, res) => {
         <p><strong>Message:</strong></p>
         <p>${message}</p>
       `,
-    };
-
-    await transporter.sendMail(mailOptions);
+    });
 
     res.status(200).json({
       message: "Message sent successfully",
@@ -39,7 +32,7 @@ const sendContactEmail = async (req, res) => {
   } catch (error) {
     console.error("Contact email error:", error);
     res.status(500).json({
-      message: "Failed to send message",
+      message: error.message || "Failed to send message",
     });
   }
 };
