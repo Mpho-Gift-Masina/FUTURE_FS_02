@@ -349,7 +349,7 @@ export default function LandingPage({ onGoToLogin, onGoToSignup, hasSession, onG
                   },
                   {
                     label: "Portfolio",
-                    href: "https://mphomasina.netlify.app/",
+                    href: "https://mphomasinaportfolio.vercel.app/",
                     icon: (
                       <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="10" />
