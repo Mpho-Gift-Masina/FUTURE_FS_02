@@ -14,7 +14,7 @@ export function StatCardsSkeleton() {
           <div
             key={i}
             className="relative overflow-hidden rounded-2xl p-5"
-            style={{ background: "#111118", border: "1px solid rgba(255,255,255,0.07)" }}
+            style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
           >
             {/* top row: dot + badge */}
             <div className="mb-4 flex items-center justify-between">
@@ -38,12 +38,12 @@ export function TableSkeleton({ rows = 6 }) {
     <section className="px-6 pb-8 md:px-8">
       <div
         className="overflow-hidden rounded-2xl"
-        style={{ background: "#111118", border: "1px solid rgba(255,255,255,0.07)" }}
+        style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
       >
         {/* filter bar */}
         <div
           className="flex items-center gap-2 px-5 py-4"
-          style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
+          style={{ borderBottom: "1px solid var(--border)" }}
         >
           {Array.from({ length: 4 }).map((_, i) => (
             <SkeletonBlock key={i} className="h-7 w-20 rounded-xl" />
@@ -56,7 +56,7 @@ export function TableSkeleton({ rows = 6 }) {
           className="grid px-5 py-3"
           style={{
             gridTemplateColumns: "2fr 2fr 1.2fr 1.2fr 1fr 1fr",
-            borderBottom: "1px solid rgba(255,255,255,0.05)",
+            borderBottom: "1px solid var(--border)",
           }}
         >
           {Array.from({ length: 6 }).map((_, i) => (
@@ -71,7 +71,7 @@ export function TableSkeleton({ rows = 6 }) {
             className="grid items-center px-5 py-4"
             style={{
               gridTemplateColumns: "2fr 2fr 1.2fr 1.2fr 1fr 1fr",
-              borderBottom: i < rows - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+              borderBottom: i < rows - 1 ? "1px solid var(--border)" : "none",
               opacity: 1 - i * 0.1,
             }}
           >

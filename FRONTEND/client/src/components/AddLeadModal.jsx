@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
-const INPUT_CLASS = "w-full rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 outline-none transition-colors";
-const INPUT_STYLE = { background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" };
+const INPUT_CLASS = "w-full rounded-xl px-4 py-3 text-sm placeholder-slate-600 outline-none transition-colors";
+const INPUT_STYLE = { background: "var(--surface-strong)", border: "1px solid var(--border)", color: "var(--text)" };
 
 function AddLeadModal({ isOpen, onClose, onAddLead }) {
   const [formData, setFormData] = useState({
@@ -23,7 +23,7 @@ function AddLeadModal({ isOpen, onClose, onAddLead }) {
   };
 
   const handleFocus = (e) => (e.target.style.borderColor = "rgba(99,102,241,0.5)");
-  const handleBlur = (e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)");
+  const handleBlur = (e) => (e.target.style.borderColor = "var(--border)");
 
   return (
     <AnimatePresence>
@@ -38,7 +38,7 @@ function AddLeadModal({ isOpen, onClose, onAddLead }) {
         >
           <motion.div
             className="w-full max-w-2xl rounded-2xl"
-            style={{ background: "#0d0d16", border: "1px solid rgba(255,255,255,0.09)" }}
+            style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
             initial={{ opacity: 0, y: 30, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.96 }}
@@ -47,7 +47,7 @@ function AddLeadModal({ isOpen, onClose, onAddLead }) {
           >
             <div
               className="flex items-center justify-between px-6 py-5"
-              style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+              style={{ borderBottom: "1px solid var(--border)" }}
             >
               <div>
                 <h3 className="text-lg font-semibold text-white">Add New Lead</h3>
@@ -56,7 +56,7 @@ function AddLeadModal({ isOpen, onClose, onAddLead }) {
               <button
                 onClick={onClose}
                 className="rounded-xl px-3 py-1.5 text-sm text-slate-400 hover:text-slate-200 transition-colors"
-                style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+                style={{ border: "1px solid var(--border)" }}
               >
                 Close
               </button>
@@ -124,7 +124,7 @@ function AddLeadModal({ isOpen, onClose, onAddLead }) {
                   type="button"
                   onClick={onClose}
                   className="rounded-xl px-5 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-200 transition-colors"
-                  style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+                  style={{ border: "1px solid var(--border)" }}
                 >
                   Cancel
                 </button>

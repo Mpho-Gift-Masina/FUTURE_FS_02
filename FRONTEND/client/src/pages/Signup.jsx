@@ -43,18 +43,18 @@ function Signup({ onSignupSuccess, onGoToLogin, onGoToLanding }) {
     }
   };
 
-  const handleFocus = (e) => (e.target.style.borderColor = "rgba(99,102,241,0.5)");
-  const handleBlur = (e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)");
-  const inputStyle = { background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#f1f5f9" };
+  const handleFocus = (e) => (e.target.style.borderColor = "var(--accent)");
+  const handleBlur = (e) => (e.target.style.borderColor = "var(--border)");
+  const inputStyle = { background: "var(--surface-strong)", border: "1px solid var(--border)", color: "var(--text)" };
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4" style={{ background: "#09090f" }}>
+    <div className="flex min-h-screen items-center justify-center px-4" style={{ background: "var(--bg)" }}>
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
         className="w-full max-w-md rounded-3xl p-8"
-        style={{ background: "#111118", border: "1px solid rgba(255,255,255,0.09)" }}
+        style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
       >
         <button
           onClick={onGoToLanding}

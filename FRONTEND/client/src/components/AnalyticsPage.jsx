@@ -22,10 +22,10 @@ const PIE_COLORS = ["#818cf8", "#22d3ee", "#f43f5e", "#34d399", "#fbbf24", "#c08
 
 const darkTooltipStyle = {
   contentStyle: {
-    background: "#16161f",
-    border: "1px solid rgba(255,255,255,0.1)",
+    background: "var(--surface)",
+    border: "1px solid var(--border)",
     borderRadius: "12px",
-    color: "#f1f5f9",
+    color: "var(--text)",
     fontSize: "13px",
   },
   cursor: { fill: "rgba(255,255,255,0.04)" },
@@ -38,7 +38,7 @@ const SummaryCard = ({ label, value, color, delay }) => (
     transition={{ duration: 0.4, delay }}
     className="relative overflow-hidden rounded-2xl p-5"
     style={{
-      background: "#111118",
+      background: "var(--surface)",
       border: `1px solid ${color}40`,
       boxShadow: `0 0 24px ${color}20`,
     }}
@@ -89,7 +89,7 @@ function AnalyticsPage({ leads }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
             className="rounded-2xl p-6"
-            style={{ background: "#111118", border: "1px solid rgba(255,255,255,0.07)" }}
+            style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
           >
             <h4 className="text-base font-semibold text-white">Status Breakdown</h4>
             <p className="mt-1 text-sm text-slate-500">Current pipeline distribution</p>
@@ -115,7 +115,7 @@ function AnalyticsPage({ leads }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
             className="rounded-2xl p-6"
-            style={{ background: "#111118", border: "1px solid rgba(255,255,255,0.07)" }}
+            style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
           >
             <h4 className="text-base font-semibold text-white">Lead Sources</h4>
             <p className="mt-1 text-sm text-slate-500">Where your leads are coming from</p>
@@ -148,7 +148,7 @@ function AnalyticsPage({ leads }) {
                 <div
                   key={item.name}
                   className="flex items-center justify-between rounded-xl px-4 py-2.5"
-                  style={{ background: "rgba(255,255,255,0.04)" }}
+                  style={{ background: "var(--surface-soft)" }}
                 >
                   <div className="flex items-center gap-3">
                     <span className="h-2.5 w-2.5 rounded-full" style={{ background: PIE_COLORS[index % PIE_COLORS.length] }} />

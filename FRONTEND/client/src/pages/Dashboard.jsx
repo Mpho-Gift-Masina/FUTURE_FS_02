@@ -258,7 +258,7 @@ function Dashboard({ onLogout }) {
   };
 
   return (
-    <div className="min-h-screen text-slate-100" style={{ background: "#09090f" }}>
+    <div className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text)" }}>
       <div className="flex min-h-screen">
         <Sidebar
           adminEmail={admin?.email}

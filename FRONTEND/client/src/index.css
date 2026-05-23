@@ -4,15 +4,42 @@ html,
 body,
 #root {
   min-height: 100%;
-  background-color: #09090f;
-  color: #f1f5f9;
-}
-
-body {
-  margin: 0;
-}
-
-@keyframes float-blob {
+  /* CSS variables for themeable colors. Toggle the `light-theme` class on <html> to switch. */
+  --bg: #09090f;
+  --text: #f1f5f9;
+  --surface: #111118;
+  --surface-soft: rgba(255,255,255,0.04);
+  --surface-strong: rgba(255,255,255,0.05);
+  --surface-muted: rgba(255,255,255,0.08);
+  --panel-bg: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.07);
+  --text-muted: #94a3b8;
+  --accent: #6366f1;
+  --accent-strong: #8b5cf6;
+  --danger-bg: rgba(239,68,68,0.1);
+  --warning-bg: rgba(245,158,11,0.15);
+  --success-bg: rgba(16,185,129,0.15);
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.25s ease, color 0.25s ease;
+ }
+ 
+ /* Light theme overrides */
+ html.light-theme {
+   --bg: #f8fafc;
+   --text: #0f172a;
+   --surface: #eef2ff;
+   --surface-soft: rgba(15,23,42,0.04);
+   --surface-strong: rgba(15,23,42,0.05);
+   --surface-muted: rgba(15,23,42,0.08);
+   --panel-bg: rgba(15,23,42,0.03);
+   --border: rgba(15,23,42,0.06);
+   --text-muted: #475569;
+   --accent: #6366f1;
+   --accent-strong: #8b5cf6;
+   --danger-bg: rgba(239,68,68,0.08);
+   --warning-bg: rgba(245,158,11,0.12);
+   --success-bg: rgba(16,185,129,0.12);
   0%, 100% { transform: translate(0, 0) scale(1); }
   33% { transform: translate(40px, -30px) scale(1.06); }
   66% { transform: translate(-25px, 20px) scale(0.96); }

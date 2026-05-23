@@ -2,9 +2,9 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
 const INPUT_STYLE = {
-  background: "rgba(255,255,255,0.05)",
-  border: "1px solid rgba(255,255,255,0.1)",
-  color: "#f1f5f9",
+  background: "var(--surface-strong)",
+  border: "1px solid var(--border)",
+  color: "var(--text)",
 };
 
 const statusStyle = {
@@ -81,7 +81,7 @@ function LeadDetailsDrawer({
       >
         <motion.div
           className="h-full w-full max-w-xl overflow-y-auto"
-          style={{ background: "#0d0d16", borderLeft: "1px solid rgba(255,255,255,0.07)" }}
+          style={{ background: "var(--surface)", borderLeft: "1px solid var(--border)" }}
           initial={{ x: 420 }}
           animate={{ x: 0 }}
           exit={{ x: 420 }}
@@ -90,7 +90,7 @@ function LeadDetailsDrawer({
         >
           <div
             className="flex items-center justify-between px-6 py-5"
-            style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+            style={{ borderBottom: "1px solid var(--border)" }}
           >
             <div>
               <h3 className="text-lg font-semibold text-white">Lead Details</h3>
@@ -99,7 +99,7 @@ function LeadDetailsDrawer({
             <button
               onClick={onClose}
               className="rounded-xl px-3 py-1.5 text-sm text-slate-400 hover:text-slate-200 transition-colors"
-              style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+              style={{ border: "1px solid var(--border)" }}
             >
               Close
             </button>
@@ -125,7 +125,7 @@ function LeadDetailsDrawer({
                 { label: "Source", value: selectedLead.source },
                 { label: "Phone", value: selectedLead.phone || "Not provided" },
               ].map(({ label, value }) => (
-                <div key={label} className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                <div key={label} className="rounded-xl p-4" style={{ background: "var(--surface-soft)", border: "1px solid var(--border)" }}>
                   <p className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</p>
                   <p className="mt-1.5 text-sm font-medium text-slate-200">{value}</p>
                 </div>
@@ -133,13 +133,13 @@ function LeadDetailsDrawer({
             </div>
 
             {/* Latest Note */}
-            <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <div className="rounded-xl p-4" style={{ background: "var(--surface-soft)", border: "1px solid var(--border)" }}>
               <p className="text-xs font-medium uppercase tracking-wide text-slate-500 mb-2">Latest Note</p>
               <p className="text-sm leading-relaxed text-slate-300">{selectedLead.note}</p>
             </div>
 
             {/* Add Note */}
-            <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <div className="rounded-xl p-4" style={{ background: "var(--surface-soft)", border: "1px solid var(--border)" }}>
               <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-slate-500">
                 Add Note
               </label>
@@ -151,7 +151,7 @@ function LeadDetailsDrawer({
                 className="w-full rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-600 outline-none resize-none transition-colors"
                 style={INPUT_STYLE}
                 onFocus={(e) => (e.target.style.borderColor = "rgba(99,102,241,0.5)")}
-                onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")}
+                onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
               />
             </div>
 
@@ -177,7 +177,7 @@ function LeadDetailsDrawer({
                 onClick={handleAddNote}
                 disabled={isSubmitting}
                 className="rounded-xl px-5 py-2.5 text-sm font-medium text-slate-300 hover:text-white transition-colors disabled:opacity-50"
-                style={{ border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.05)" }}
+                style={{ border: "1px solid var(--border)", background: "var(--surface-strong)" }}
               >
                 Save Note
               </button>

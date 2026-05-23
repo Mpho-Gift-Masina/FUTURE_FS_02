@@ -50,7 +50,7 @@ function StatCard({ title, value, change }) {
       whileHover={{ y: -5, scale: 1.02 }}
       className="relative overflow-hidden rounded-2xl p-5"
       style={{
-        background: "#111118",
+        background: "var(--surface)",
         border: `1px solid ${c.border}`,
         boxShadow: `0 0 30px ${c.glow}`,
       }}

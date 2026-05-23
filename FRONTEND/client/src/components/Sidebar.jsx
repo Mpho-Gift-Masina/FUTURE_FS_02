@@ -41,21 +41,21 @@ function Sidebar({ adminEmail, isMobileOpen, onCloseMobile, activePage, onChange
   };
 
   const sidebarContent = (
-    <div className="flex h-full flex-col" style={{ background: "#0d0d16" }}>
-      <div className="px-6 py-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+    <div className="flex h-full flex-col" style={{ background: "var(--bg)" }}>
+      <div className="px-6 py-6" style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="flex items-center gap-2.5">
           <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-600">
             <svg width="14" height="14" fill="none" stroke="white" strokeWidth="2.2" viewBox="0 0 24 24">
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
             </svg>
           </div>
-          <h1 className="text-lg font-semibold tracking-tight text-white">TechSol CRM</h1>
+          <h1 className="text-lg font-semibold tracking-tight" style={{ color: 'var(--text)' }}>TechSol CRM</h1>
         </div>
-        <p className="mt-2 text-xs text-slate-500">Lead management</p>
+        <p className="mt-2 text-xs" style={{ color: 'var(--muted)' }}>Lead management</p>
       </div>
 
       <nav className="flex-1 px-3 py-5">
-        <p className="mb-3 px-3 text-[10px] font-semibold uppercase tracking-widest text-slate-600">Navigation</p>
+        <p className="mb-3 px-3 text-[10px] font-semibold uppercase tracking-widest" style={{ color: 'var(--muted)' }}>Navigation</p>
         <div className="space-y-1">
           {items.map((item, index) => (
             <motion.button
@@ -67,12 +67,16 @@ function Sidebar({ adminEmail, isMobileOpen, onCloseMobile, activePage, onChange
               onClick={() => handleClick(item)}
               className={`relative flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium transition-all duration-150 ${
                 activePage === item
-                  ? "bg-indigo-600 text-white shadow-lg"
-                  : "text-slate-400 hover:text-slate-200"
+                  ? "shadow-lg"
+                  : ""
               }`}
-              style={activePage === item ? { boxShadow: "0 4px 20px rgba(99,102,241,0.35)" } : {}}
+              style={
+                activePage === item
+                  ? { boxShadow: "0 4px 20px rgba(99,102,241,0.35)", background: 'var(--accent)', color: '#fff' }
+                  : { color: 'var(--muted)' }
+              }
             >
-              <span className={activePage === item ? "text-white" : "text-slate-500"}>
+              <span style={{ color: activePage === item ? '#fff' : 'var(--muted)' }}>
                 {icons[item]}
               </span>
               {item}
@@ -87,14 +91,14 @@ function Sidebar({ adminEmail, isMobileOpen, onCloseMobile, activePage, onChange
         </div>
       </nav>
 
-      <div className="px-4 py-4" style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-        <div className="flex items-center gap-3 rounded-xl p-3" style={{ background: "rgba(255,255,255,0.04)" }}>
+      <div className="px-4 py-4" style={{ borderTop: "1px solid var(--border)" }}>
+        <div className="flex items-center gap-3 rounded-xl p-3" style={{ background: "var(--panel-bg)" }}>
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600/30 text-xs font-bold text-indigo-400">
             {adminEmail ? adminEmail[0].toUpperCase() : "A"}
           </div>
           <div className="min-w-0">
-            <p className="text-xs font-medium text-slate-300">Admin</p>
-            <p className="truncate text-xs text-slate-500">{adminEmail || "Unknown"}</p>
+            <p className="text-xs font-medium" style={{ color: 'var(--text)' }}>Admin</p>
+            <p className="truncate text-xs" style={{ color: 'var(--muted)' }}>{adminEmail || "Unknown"}</p>
           </div>
         </div>
       </div>
@@ -103,7 +107,7 @@ function Sidebar({ adminEmail, isMobileOpen, onCloseMobile, activePage, onChange
 
   return (
     <>
-      <aside className="hidden w-60 flex-col lg:flex" style={{ background: "#0d0d16", borderRight: "1px solid rgba(255,255,255,0.07)" }}>
+      <aside className="hidden w-60 flex-col lg:flex" style={{ background: "var(--surface)", borderRight: "1px solid var(--border)" }}>
         {sidebarContent}
       </aside>
 
@@ -119,7 +123,7 @@ function Sidebar({ adminEmail, isMobileOpen, onCloseMobile, activePage, onChange
           >
             <motion.aside
               className="h-full w-60"
-              style={{ background: "#0d0d16", borderRight: "1px solid rgba(255,255,255,0.07)" }}
+              style={{ background: "var(--surface)", borderRight: "1px solid var(--border)" }}
               initial={{ x: -280 }}
               animate={{ x: 0 }}
               exit={{ x: -280 }}

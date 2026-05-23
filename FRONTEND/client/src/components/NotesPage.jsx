@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 function NotesPage({ filteredLeads }) {
   return (
     <section className="px-6 py-6 md:px-8">
-      <div className="rounded-2xl p-6" style={{ background: "#111118", border: "1px solid rgba(255,255,255,0.07)" }}>
+      <div className="rounded-2xl p-6" style={{ background: "var(--surface)", border: "1px solid var(--border)" }}>
         <h3 className="text-lg font-semibold text-white">Notes</h3>
         <p className="mt-1 text-sm text-slate-500">Recent follow-up notes across leads.</p>
 
@@ -15,7 +15,7 @@ function NotesPage({ filteredLeads }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, delay: i * 0.04 }}
               className="rounded-xl p-4"
-              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
+              style={{ background: "var(--surface-soft)", border: "1px solid var(--border)" }}
             >
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-indigo-500" />

@@ -1,4 +1,10 @@
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+
+// Topbar includes a theme toggle that adds/removes the `light-theme` class
+// on the document root (<html>) and persists the selection to localStorage.
+// This keeps theme state outside React rendering so the whole app switches
+// immediately without requiring prop drilling.
 
 function Topbar({
   searchTerm,
@@ -13,7 +19,8 @@ function Topbar({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
       className="px-4 py-4 md:px-8"
-      style={{ background: "#09090f", borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+      // header colors use CSS variables defined in `src/index.css`
+      style={{ background: "var(--bg)", borderBottom: "1px solid var(--border)" }}
     >
       <div className="flex flex-col gap-4">
         <div className="flex items-start justify-between gap-3">
@@ -21,7 +28,7 @@ function Topbar({
             <button
               onClick={onOpenMobileMenu}
               className="mt-1 rounded-xl px-3 py-2 text-sm text-slate-400 hover:text-slate-200 transition-colors lg:hidden"
-              style={{ border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.04)" }}
+              style={{ border: "1px solid var(--border)", background: "var(--surface-strong)" }}
             >
               Menu
             </button>
@@ -43,15 +50,17 @@ function Topbar({
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full rounded-xl pl-9 pr-4 py-2.5 text-sm text-slate-300 placeholder-slate-600 outline-none transition-colors"
               style={{
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.08)",
+                background: "var(--surface-strong)",
+                border: "1px solid var(--border)",
               }}
               onFocus={(e) => (e.target.style.borderColor = "rgba(99,102,241,0.5)")}
-              onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
+              onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
             />
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
+            {/* Theme toggle: visible labeled button for quick switching */}
+            <ThemeToggle />
             <motion.button
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
@@ -67,7 +76,7 @@ function Topbar({
               whileTap={{ scale: 0.98 }}
               onClick={onLogout}
               className="rounded-xl px-5 py-2.5 text-sm font-medium text-slate-400 hover:text-slate-200 transition-colors"
-              style={{ border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.03)" }}
+              style={{ border: "1px solid var(--border)", background: "var(--surface-strong)" }}
             >
               Log Out
             </motion.button>
@@ -75,6 +84,55 @@ function Topbar({
         </div>
       </div>
     </motion.header>
+  );
+}
+
+function ThemeToggle() {
+  // local theme state for button label and icon
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === 'undefined') return 'dark';
+    return (
+      localStorage.getItem('theme') ||
+      (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    );
+  });
+
+  // apply theme class to <html> and persist selection
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'light') root.classList.add('light-theme');
+    else root.classList.remove('light-theme');
+    try { localStorage.setItem('theme', theme); } catch (e) {}
+  }, [theme]);
+
+  const handleToggle = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'));
+
+  return (
+    // Visible pill button with icon + label so it's clear to users
+    <button
+      onClick={handleToggle}
+      className="mt-1 flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium"
+      style={{ border: '1px solid var(--border)', background: 'transparent', color: 'var(--text)' }}
+      aria-pressed={theme === 'light'}
+      aria-label="Toggle light/dark theme"
+      title="Toggle light / dark theme"
+    >
+      {theme === 'light' ? (
+        <>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+            <circle cx="12" cy="12" r="4" />
+          </svg>
+          Light
+        </>
+      ) : (
+        <>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          Dark
+        </>
+      )}
+    </button>
   );
 }
 

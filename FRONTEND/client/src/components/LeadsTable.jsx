@@ -38,11 +38,11 @@ function LeadsTable({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.1 }}
       className="overflow-hidden rounded-2xl"
-      style={{ background: "#111118", border: "1px solid rgba(255,255,255,0.07)" }}
+      style={{ background: "var(--surface)", border: "1px solid var(--border)" }}
     >
       <div
         className="flex flex-col gap-3 px-5 py-4 md:flex-row md:items-center md:justify-between"
-        style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+        style={{ borderBottom: "1px solid var(--border)" }}
       >
         <div>
           <h3 className="text-base font-semibold text-white">Recent Leads</h3>
@@ -62,7 +62,7 @@ function LeadsTable({
                 style={
                   isActive
                     ? { background: "rgba(99,102,241,0.2)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.4)" }
-                    : { background: "rgba(255,255,255,0.04)", color: "#64748b", border: "1px solid rgba(255,255,255,0.07)" }
+                    : { background: "var(--surface-soft)", color: "#64748b", border: "1px solid var(--border)" }
                 }
               >
                 {label}
@@ -75,7 +75,7 @@ function LeadsTable({
       <div className="w-full overflow-x-auto">
         <table className="min-w-200 w-full text-left">
           <thead>
-            <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+            <tr style={{ borderBottom: "1px solid var(--border)" }}>
               <th className="px-5 py-3 text-xs font-medium uppercase tracking-wide text-slate-500">
                 <SortButton field="name" label="Name" />
               </th>
@@ -102,8 +102,8 @@ function LeadsTable({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.22, delay: index * 0.04 }}
                   className="group transition-colors"
-                  style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.03)")}
+                  style={{ borderBottom: "1px solid var(--border)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--surface-soft)")}
                   onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
                   <td className="px-5 py-4 text-sm font-medium text-slate-200">{lead.name}</td>
@@ -124,7 +124,7 @@ function LeadsTable({
                       whileTap={{ scale: 0.97 }}
                       onClick={() => onViewLead(lead)}
                       className="rounded-xl px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:text-white"
-                      style={{ border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.04)" }}
+                      style={{ border: "1px solid var(--border)", background: "var(--surface-soft)" }}
                     >
                       View
                     </motion.button>

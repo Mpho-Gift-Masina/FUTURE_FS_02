@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { sendContactMessage } from "../lib/api";
+// Import TechSol logo from assets so we can render it next to the title in the top nav
+import techsolLogo from "../assets/techsol_logo.png";
 
 const ICON_COLORS = ["#818cf8", "#22d3ee", "#f59e0b", "#34d399"];
 
@@ -92,7 +94,7 @@ export default function LandingPage({ onGoToLogin, onGoToSignup, hasSession, onG
   };
 
   return (
-    <div className="min-h-screen font-sans" style={{ background: "#09090f", color: "#f1f5f9" }}>
+    <div className="min-h-screen font-sans" style={{ background: "var(--bg)", color: "var(--text)" }}>
 
       {/* floating blob decorators */}
       <div
@@ -107,10 +109,19 @@ export default function LandingPage({ onGoToLogin, onGoToSignup, hasSession, onG
       {/* NAV */}
       <nav
         className="sticky top-0 z-50 backdrop-blur-sm"
-        style={{ background: "rgba(9,9,15,0.8)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+        style={{ background: "transparent", borderBottom: "1px solid var(--border)" }}
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <span className="text-lg font-semibold tracking-tight text-white">TechSol CRM</span>
+          {/* Logo: render the company mark from /src/assets next to the title */}
+          <div className="flex items-center gap-3">
+            <img
+              src={techsolLogo}
+              alt="TechSol"
+              // Larger, more visible logo; avoid drop shadows or borders per request
+              className="h-10 w-auto rounded-sm object-contain"
+            />
+            <span className="text-lg font-semibold tracking-tight text-white">TechSol CRM</span>
+          </div>
           <div className="hidden items-center gap-8 text-sm text-slate-400 sm:flex">
             <a href="#features" className="hover:text-slate-200 transition-colors">Features</a>
             <a href="#how-it-works" className="hover:text-slate-200 transition-colors">How it works</a>
@@ -119,18 +130,26 @@ export default function LandingPage({ onGoToLogin, onGoToSignup, hasSession, onG
           <div className="flex items-center gap-3">
             <button
               onClick={onGoToSignup}
-              className="rounded-xl px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-200 transition-colors"
-              style={{ border: "1px solid rgba(255,255,255,0.1)" }}
-            >
+              className="rounded-xl px-4 py-2 text-sm font-medium text-slate-200 hover:text-slate-200 transition-colors"
+              style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)", boxShadow: "0 6px 24px rgba(99,102,241,0.4)" }}
+            > 
+            
               Sign Up
             </button>
             <button
+              onClick={onGoToLogin}
+              className="rounded-xl px-4 py-2 text-sm font-medium text-slate-200 hover:text-slate-200 transition-colors"
+              style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)", boxShadow: "0 6px 24px rgba(99,102,241,0.4)" }}
+            >
+              Log in
+            </button>
+            {/* <button
               onClick={hasSession ? onGoToDashboard : onGoToLogin}
               className="rounded-xl px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
               style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)", boxShadow: "0 4px 16px rgba(99,102,241,0.3)" }}
             >
               Go to Dashboard
-            </button>
+            </button> */}
           </div>
         </div>
       </nav>
@@ -165,13 +184,13 @@ export default function LandingPage({ onGoToLogin, onGoToSignup, hasSession, onG
             >
               Create free account
             </button>
-            <button
+            {/* <button
               onClick={hasSession ? onGoToDashboard : onGoToLogin}
               className="w-full rounded-2xl px-8 py-3.5 text-sm font-semibold text-slate-300 hover:text-white transition-colors sm:w-auto"
               style={{ border: "1px solid rgba(255,255,255,0.15)" }}
             >
               Go to Dashboard
-            </button>
+            </button> */}
           </div>
         </motion.div>
 
@@ -463,13 +482,13 @@ export default function LandingPage({ onGoToLogin, onGoToSignup, hasSession, onG
             >
               Create free account
             </button>
-            <button
+            {/*<button
               onClick={onGoToLogin}
               className="w-full rounded-2xl px-8 py-3.5 text-sm font-semibold text-indigo-200 hover:text-white transition-colors sm:w-auto"
               style={{ border: "1px solid rgba(165,180,252,0.35)" }}
             >
               Log in
-            </button>
+            </button>*/}
           </div>
         </motion.div>
       </section>
